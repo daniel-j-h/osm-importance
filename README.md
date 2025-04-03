@@ -30,6 +30,14 @@ Start up the routing API
 
 From here on use the Python scripts to run shortest path queries and to analyze.
 
+Generate OpenStreetMap node ids sorted by how many shortest paths go over them
+
+    python generate.py > importance.csv
+
+Analyze the OpenStreetMap dataset taking the routing importance into account
+
+    python3 analyze.py berlin-latest.osm.pbf important.csv
+
 
 ## Note on Alternative Routes
 
