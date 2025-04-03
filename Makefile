@@ -25,4 +25,4 @@ api:
 
 .PHONY: clean
 clean:
-	@rm -f *.osm.pbf *.osrm.*
+	@rm -f *.osm.pbf *.osrm.* *.csv
