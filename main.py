@@ -41,11 +41,11 @@ def main():
                  annotation = leg["annotation"]
                  nodes = annotation["nodes"]
 
-                 for node in nodes:
-                     counts[node] += 1
+                 for (a, b) in zip(nodes, nodes[1:]):
+                     counts[(a, b)] += 1
 
-    for node, count in counts.most_common(100):
-        print(f"{node},{count}")
+    for (a, b), count in counts.most_common(100):
+        print(f"{a},{b},{count}")
 
 
 if __name__ == "__main__":
