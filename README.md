@@ -1,13 +1,12 @@
 # OpenStreetMap Importance Heuristic
 
-This repository is a quick and dirty proof of concept for a goal directed OpenStreetMap completion priorization.
+This repository is a proof of concept for a goal directed OpenStreetMap completion heuristic.
 
-In [this](https://media.ccc.de/v/fossgis2025-58025-openstreetmap-ist-doch-vollstandig) FOSSGIS 2025 Michael Reichert talked about how complete OpenStreetMap is and how to figure out where to go and what to map.
-
+In [this](https://media.ccc.de/v/fossgis2025-58025-openstreetmap-ist-doch-vollstandig) FOSSGIS 2025 talk Michael Reichert showed how complete OpenStreetMap is and how to figure out where to go and what to map best.
 Instead of querying e.g. for surface tags randomly here I suggest using a routing engine based heuristic to find ways of high importance missing e.g. surface tags.
 
 Here is how it works
-1. We use a routing engine and do random queries, e.g. between cities or from one end of a city to the other end of a city
+1. We use a routing engine and do queries, e.g. between cities or from one end of a city to the other
 2. We count how often shortest paths go over specific ways, or rather pairs of OpenStreetMap nodes
 3. We can now sort that list of ways or node pairs and rank it, as a heuristic of how important they are
 4. We check if these ways all have surface tags, prioritizing top to bottom for highest impact
@@ -29,17 +28,20 @@ Start up the routing API
 
     make api
 
+From here on use the Python scripts to run shortest path queries and to analyze.
 
 
-## Note on alternative routes
+## Note on Alternative Routes
 
 Alternative routes are an amazing tool and often under-appreciated.
-Specifically the `alternatives=n` feature [we implemented](https://www.openstreetmap.org/user/daniel-j-h/diary/44020) is very powerful for use cases.
+We use alternative routes in this project to generate many reasonable alternatives people might use when navigating e.g. within a city.
+
+The `alternatives=n` feature [we implemented](https://www.openstreetmap.org/user/daniel-j-h/diary/44020) is very powerful for these use cases.
 For example: Generate many (tens, hundreds) plausible alternative routes, then post-process them based on domain-specific or real-time data, and then return a subset to the user.
 
 You find this technique applicable in many domains
-- In delivery-like use cases where breaks and delivery times and other real time data come into play to optimize ETAs
-- In outdoor use cases where you could post-process many alternatives to rank them based on land use, think nature or forests
+- Post-process many alternatives to adjust ETAs with real-time or domain specific information
+- Post-process many alternatives to rank them based on variety, land use e.g. percentage of forest paths
 
 
 ## License
