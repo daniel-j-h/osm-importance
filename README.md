@@ -36,7 +36,7 @@ Generate OpenStreetMap node ids sorted by how many shortest paths go over them
 
 Analyze the OpenStreetMap dataset taking the routing importance into account
 
-    python3 analyze.py berlin-latest.osm.pbf important.csv
+    python analyze.py berlin-latest.osm.pbf important.csv
 
 
 ## Note on Alternative Routes
