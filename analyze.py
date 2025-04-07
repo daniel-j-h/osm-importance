@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 import csv
 
@@ -14,6 +16,9 @@ class Handler(osmium.SimpleHandler):
         if w.is_closed():
             return
 
+        if not "highway" in w.tags:
+            return
+
         noderefs = list(w.nodes)
 
         segments = [(noderefs[i].ref, noderefs[i + 1].ref)
@@ -23,7 +28,6 @@ class Handler(osmium.SimpleHandler):
             return
 
         wid = w.positive_id()
-        tags = [(k, v) for k, v in w.tags]
 
         if "surface" not in w.tags:
             print(f"https://www.openstreetmap.org/way/{wid}")
