@@ -13,6 +13,14 @@ Here is how it works
 
 I don't know if anyone has done this before, this idea just came to me watching the talk and wondering if there are heuristics to prioritize by.
 
+Here is a quick sketch visualizing the proof of concept for the city of Berlin:
+1. We create pairs of two points on a circle around Berlin, opposing each other
+2. We do shortest path queries from one point to the other point through the city
+3. We rank OpenStreetMap segments based on how many shortest paths go over them
+4. We then check if those high importance OpenStreetMap segments are missing critical tags
+
+![](./sketch.jpg)
+
 
 ## Usage
 
@@ -36,7 +44,7 @@ Generate OpenStreetMap node ids sorted by how many shortest paths go over them
 
 Analyze the OpenStreetMap dataset taking the routing importance into account
 
-    python analyze.py berlin-latest.osm.pbf important.csv
+    python analyze.py berlin-latest.osm.pbf importance.csv
 
 
 ## Note on Alternative Routes
